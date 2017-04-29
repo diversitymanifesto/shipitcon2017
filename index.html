@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>A Brief History of Docker at Demonware</title>
+		<title>7 Reasons to attend ShipItCon 2017</title>
 
 		<meta name="description" content="">
 		<meta name="author" content="tomwillfixit">
@@ -41,12 +41,12 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section data-transition="convex">
- 					<font size="32"><strong>A Brief History of Docker at </strong></font> 
-					<img width="450" height="175" data-src="img/dw2.png" alt="Demonware" style="background:none; border:none; box-shadow:none;">
+ 					<font size="32"><strong>A Brief History of Docker at </strong></font>
+					<img width="450" height="175" data-src="img/shipitcon.png" alt="shipitcon" style="background:none; border:none; box-shadow:none;">
 					<p>
-						<small>Created by <a href="http://demonware.net">Thomas Shaw (Build Engineer at Demonware)</a> / <a href="http://twitter.com/tomwillfixit">@tomwillfixit</a></small>
+						<small>Created by <a href="http://demonware.net">Thomas Shaw (Co-Founder of ShipItCon)</a> / <a href="http://twitter.com/tomwillfixit">@tomwillfixit</a></small>
 					</p>
-					
+
 				</section>
 				<section>
 				<p>&ldquo;Those who don't know history are destined to repeat it.&rdquo;</p> <strong>Edmund Burke</strong>
@@ -65,7 +65,7 @@
 
 				<section>
 				        <strong>September 17th 2013</strong>
-					<p> 
+					<p>
 					Prototype installing a service in a Container
 
 					<pre><code class="hljs" data-trim contenteditable>
@@ -74,7 +74,7 @@ FROM centos59_golden
 MAINTAINER Build Engineering
 
 # make sure the package repository is up to date
-RUN sudo yum update -y 
+RUN sudo yum update -y
 
 # install service X
 RUN sudo yum install service_X -y
@@ -89,7 +89,7 @@ ENTRYPOINT ["cd /opt/service_X;./service_X.py latest"]
 
 				</section>
 				<section data-transition="convex">
-				<strong>October 8th 2013</strong> 
+				<strong>October 8th 2013</strong>
 				<p>
 				Prototype running unit tests with Docker<br>
 					<section>
@@ -120,28 +120,28 @@ ENTRYPOINT ["cd /opt/service_X;./service_X.py latest"]
 						<h2>Multiple containers</h2>
 						<p>We split the unit tests across lots of containers.</p>
 						<img width="225" height="200" data-src="img/containers.jpg" alt="containers">
-						
+
 					</section>
 				</section>
 
 
 				<section>
 					<section id="fragments">
-						<strong>October 15th 2013</strong> 
+						<strong>October 15th 2013</strong>
 						<p>
-						
+
 						<p align="left">We started to move some non critical CI from VMs to containers.</p><br>
-					
+
 						<p class="fragment" align="left">&nbsp;&nbsp;- Connected Bamboo with Docker API</p>
-						<p class="fragment" align="left">&nbsp;&nbsp;- Docker 0.7 installed on all build agents</p> 
-						<p class="fragment" align="left">&nbsp;&nbsp;- Moved non essential RPM builds from VM to container</p> 
+						<p class="fragment" align="left">&nbsp;&nbsp;- Docker 0.7 installed on all build agents</p>
+						<p class="fragment" align="left">&nbsp;&nbsp;- Moved non essential RPM builds from VM to container</p>
 						<p class="fragment" align="left">&nbsp;&nbsp;- Continued to Dockerize unit tests</p>
 
 					</section>
 				</section>
 
 				<section>
-				<strong>October 29th 2013</strong> 
+				<strong>October 29th 2013</strong>
 				<p align="left">
 				Pitfall #1 : Treating the container like a VM
 				<br><br>
@@ -199,7 +199,7 @@ ENTRYPOINT ["cd /opt/service_X;./service_X.py latest"]
 				</section>
 
 				<section>
-				<strong>March 5th 2014</strong> 
+				<strong>March 5th 2014</strong>
 				<p align="left">
 				We continued to spread the news about Docker
 
@@ -216,15 +216,15 @@ ENTRYPOINT ["cd /opt/service_X;./service_X.py latest"]
 				<section>
 
 					<section id="loadtest">
-						<strong>May 5th 2014</strong> 
+						<strong>May 5th 2014</strong>
 						<p>
-						
+
 						<p align="left">Prototype using Docker to test Load Test tooling</p><br>
-					
+
 						<p class="fragment" align="left">&nbsp;&nbsp;- Containerize Load Test tools</p>
 						<p class="fragment" align="left">&nbsp;&nbsp;- Containerize Load Test infrastructure</p>
-						<p class="fragment" align="left">&nbsp;&nbsp;- Spin up/Tear down small clusters</p> 
-						<p class="fragment" align="left">&nbsp;&nbsp;- Nightly testing of tools</p> 
+						<p class="fragment" align="left">&nbsp;&nbsp;- Spin up/Tear down small clusters</p>
+						<p class="fragment" align="left">&nbsp;&nbsp;- Nightly testing of tools</p>
 
 					</section>
 
@@ -234,13 +234,13 @@ ENTRYPOINT ["cd /opt/service_X;./service_X.py latest"]
 				<h2>Fast Forward</h2>
 				<p>
 				Scroll down for some key dates in our history
-				
+
 
 					<section>
 						<br>
 						<br>
 						<a href="#" class="navigate-down">
-						<img width="175" height="175" data-src="img/arrow.png" alt="Down arrow" style="background:none; border:none; box-shadow:none;">	
+						<img width="175" height="175" data-src="img/arrow.png" alt="Down arrow" style="background:none; border:none; box-shadow:none;">
 						</a>
 					</section>
 					<section>
@@ -296,14 +296,14 @@ ENTRYPOINT ["cd /opt/service_X;./service_X.py latest"]
 				<img width="620" height="400" data-src="img/bootcamp.jpg" alt="bootcamp" style="background:none; border:none; box-shadow:none;" >
 				</section>
 				<section data-transition="convex">
-				
+
 				<p align="left">Starting in January 2015 we hosted a number of Docker Bootcamps within Demonware and externally.<br><br> The aim was to : </p>
 				<ul>
 				<li>Introduce Docker to engineers</li>
 				<li>Cover the basics such as building an image and running a container</li>
 				<li>Give something back to the Docker community</li>
 				</ul>
-				
+
 				</section>
 				<section data-transition="convex">
 				<ul>
@@ -311,7 +311,7 @@ ENTRYPOINT ["cd /opt/service_X;./service_X.py latest"]
 				<li>Workday in Dublin. 11th September 2015</li><br>
 				<li>Interested in hosting a Bootcamp? <a href="http://twitter.com/tomwillfixit">Get in touch</a></li>
 				</ul>
-				
+
 				</section>
 
 				<section>
@@ -322,7 +322,7 @@ ENTRYPOINT ["cd /opt/service_X;./service_X.py latest"]
 				<p align="left">Demonware has also been actively involved in organizing Docker Meetups. <br><br> Scroll down for a list of Meetups</p>
 				<section>
 						<a href="#" class="navigate-down">
-						<img width="175" height="175" data-src="img/arrow.png" alt="Down arrow" style="background:none; border:none; box-shadow:none;">	
+						<img width="175" height="175" data-src="img/arrow.png" alt="Down arrow" style="background:none; border:none; box-shadow:none;">
 						</a>
 					</section>
 					<section>
@@ -382,7 +382,7 @@ ENTRYPOINT ["cd /opt/service_X;./service_X.py latest"]
 
 				</section>
 				<section>
-				<strong>June 2015</strong> 
+				<strong>June 2015</strong>
 				<p align="left">
 				Pitfall #2 :
 				<br><br>
@@ -411,8 +411,8 @@ ENTRYPOINT ["cd /opt/service_X;./service_X.py latest"]
 				</section>
 
 				<section data-transition="convex">
-				<strong>September 3rd 2015</strong> 
-				<p align="left">Prototype running infrastructure services in containers.<br><br>We used docker-compose to deploy and manage the following : </p> 
+				<strong>September 3rd 2015</strong>
+				<p align="left">Prototype running infrastructure services in containers.<br><br>We used docker-compose to deploy and manage the following : </p>
 				<br>
 				<ul>
 				<li>Bamboo</li>
@@ -420,11 +420,11 @@ ENTRYPOINT ["cd /opt/service_X;./service_X.py latest"]
 				<li>PyPi</li>
 				<li>Docker Registry</li>
 				</ul>
-				
+
 				</section>
-				
+
 				<section>
-				<strong>November 2015</strong> 
+				<strong>November 2015</strong>
 				<p align="left">
 				Pitfall #3 :
 				<br><br>
@@ -436,7 +436,7 @@ ENTRYPOINT ["cd /opt/service_X;./service_X.py latest"]
 					<li>Constantly review and refine base images</li>
 					<li>Treat the host and base OS like cattle</li>
 					<li>Lesson learned : Be prepared to pivot</li>
-					
+
 				</ul>
 				</section>
 				<section>
@@ -456,7 +456,7 @@ ENTRYPOINT ["cd /opt/service_X;./service_X.py latest"]
 				<h1>We are hiring</h1>
 				<img width="650" height="250" data-src="img/dw2.png" alt="Demonware" style="background:none; border:none; box-shadow:none;">
 				</section>
-				
+
 			</div>
 
 		</div>
