@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>A Brief History of Docker at Demonware</title>
+
+		<meta name="description" content="">
+		<meta name="author" content="tomwillfixit">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section data-transition="convex">
+ 					<font size="32"><strong>A Brief History of Docker at </strong></font> 
+					<img width="450" height="175" data-src="img/dw2.png" alt="Demonware" style="background:none; border:none; box-shadow:none;">
+					<p>
+						<small>Created by <a href="http://demonware.net">Thomas Shaw (Build Engineer at Demonware)</a> / <a href="http://twitter.com/tomwillfixit">@tomwillfixit</a></small>
+					</p>
+					
+				</section>
+				<section>
+				<p>&ldquo;Those who don't know history are destined to repeat it.&rdquo;</p> <strong>Edmund Burke</strong>
+				</section>
+
+
+				<section data-transition="convex">
+                                        <p>&ldquo;We started looking at Docker today.&nbsp;&nbsp;It is very nice :)  Perfect for regression testing.&nbsp;&nbsp;Thanks for letting us know about it.&rdquo;</p><strong>Build Engineer at Demonware </strong>(September 3rd 2013)
+                                </section>
+
+
+				<section data-transition="zoom">
+                                        <p>&ldquo;The journey of a thousand miles begins with one step.&rdquo; <strong>Lao Tzu</strong></p>
+					<img width="620" height="413" data-src="img/docker.jpg" alt="Docker">
+                                </section>
+
+				<section>
+				        <strong>September 17th 2013</strong>
+					<p> 
+					Prototype installing a service in a Container
+
+					<pre><code class="hljs" data-trim contenteditable>
+FROM centos59_golden
+
+MAINTAINER Build Engineering
+
+# make sure the package repository is up to date
+RUN sudo yum update -y 
+
+# install service X
+RUN sudo yum install service_X -y
+
+# expose ports
+EXPOSE 8080
+
+# Start service when launching the container
+ENTRYPOINT ["cd /opt/service_X;./service_X.py latest"]
+
+					</code></pre>
+
+				</section>
+				<section data-transition="convex">
+				<strong>October 8th 2013</strong> 
+				<p>
+				Prototype running unit tests with Docker<br>
+					<section>
+						<br>
+						<a href="#" class="navigate-down">
+							<img width="175" height="175" data-src="img/arrow.png" alt="Down arrow" style="background:none; border:none; box-shadow:none;">
+						</a>
+					</section>
+					<section>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<h2>Single container</h2>
+						<p>We ran every unit test inside a CentOS 5.9 container.</p>
+						<br>
+						<a href="#" class="navigate-down">
+						<img width="225" height="200" data-src="img/single_container.jpg" alt="container">
+						</a>
+					</section>
+					<section>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<h2>Multiple containers</h2>
+						<p>We split the unit tests across lots of containers.</p>
+						<img width="225" height="200" data-src="img/containers.jpg" alt="containers">
+						
+					</section>
+				</section>
+
+
+				<section>
+					<section id="fragments">
+						<strong>October 15th 2013</strong> 
+						<p>
+						
+						<p align="left">We started to move some non critical CI from VMs to containers.</p><br>
+					
+						<p class="fragment" align="left">&nbsp;&nbsp;- Connected Bamboo with Docker API</p>
+						<p class="fragment" align="left">&nbsp;&nbsp;- Docker 0.7 installed on all build agents</p> 
+						<p class="fragment" align="left">&nbsp;&nbsp;- Moved non essential RPM builds from VM to container</p> 
+						<p class="fragment" align="left">&nbsp;&nbsp;- Continued to Dockerize unit tests</p>
+
+					</section>
+				</section>
+
+				<section>
+				<strong>October 29th 2013</strong> 
+				<p align="left">
+				Pitfall #1 : Treating the container like a VM
+				<br><br>
+					<ul>
+						<li>"Full Stack" container with 8 services running</li>
+						<li>Image size was atrocious</li>
+						<li>Image build time was long</li>
+						<li>Lesson learned : Container != VM</li>
+					</ul>
+				</section>
+
+				<section>
+				<strong>December 13th 2013</strong>
+				<p>
+				<h1>You've got Mail!</h1>
+				</section>
+
+				<section>
+				<strong>December 13th 2013</strong>
+				<p align="left">
+				We wanted to spread the news about Docker so we emailed a few people.  Well that was the intention.</p>
+					<section>
+						<br>
+						<a href="#" class="navigate-down">
+							<img width="175" height="175" data-src="img/arrow.png" alt="Down arrow" style="background:none; border:none; box-shadow:none;">
+						</a>
+					</section>
+					<section>
+						<br>
+						<br>
+						<h2>Who did we email?</h2>
+						<p>Everyone involved in Technology at Demonware.</p>
+					</section>
+					<section>
+						<br>
+						<br>
+						<h2>What did the email say?</h2>
+						<p>
+						<ul>
+							<li>We plan to move all builds from Vagrant VMs to Docker</li>
+							<li>Docker is super fast</li>
+							<li>We have better build throughput on build agents</li>
+							<li>Less code to maintain</li>
+							<li>Portable</li>
+						</ul>
+						</p>
+					</section>
+					<section>
+						<br>
+						<br>
+						<h2>What now?</h2>
+						<br>
+						Let's prove Docker can revolutionize how we build, test and deploy at Demonware.
+					</section>
+				</section>
+
+				<section>
+				<strong>March 5th 2014</strong> 
+				<p align="left">
+				We continued to spread the news about Docker
+
+					<ul>
+						<li>Lightening Talk at Demonware Summit</li>
+						<li>Docker Registry setup</li>
+						<li>More tests being added to containers; smoke tests</li>
+						<li>More Docker build agents added</li>
+						<li>Mails sent for each Docker release detailing new features</li>
+						<li>Competitions/Swag giveaways</li>
+					</ul>
+				</section>
+
+				<section>
+
+					<section id="loadtest">
+						<strong>May 5th 2014</strong> 
+						<p>
+						
+						<p align="left">Prototype using Docker to test Load Test tooling</p><br>
+					
+						<p class="fragment" align="left">&nbsp;&nbsp;- Containerize Load Test tools</p>
+						<p class="fragment" align="left">&nbsp;&nbsp;- Containerize Load Test infrastructure</p>
+						<p class="fragment" align="left">&nbsp;&nbsp;- Spin up/Tear down small clusters</p> 
+						<p class="fragment" align="left">&nbsp;&nbsp;- Nightly testing of tools</p> 
+
+					</section>
+
+				</section>
+
+				<section>
+				<h2>Fast Forward</h2>
+				<p>
+				Scroll down for some key dates in our history
+				
+
+					<section>
+						<br>
+						<br>
+						<a href="#" class="navigate-down">
+						<img width="175" height="175" data-src="img/arrow.png" alt="Down arrow" style="background:none; border:none; box-shadow:none;">	
+						</a>
+					</section>
+					<section>
+						<br>
+						<br>
+						<h2>July 9th 2014</h2>
+						<p>First Docker Dublin Meetup sponsored by Gilt.</p>
+					</section>
+					<section>
+						<br>
+						<br>
+						<h2>July 29th 2014</h2>
+						<p>Using Docker to run System Tests. Each test component in a separate container.</p>
+					</section>
+					<section>
+						<br>
+						<br>
+						<h2>August 28th 2014</h2>
+						<p>We started using Fig. Fig was later acquired by Docker.inc and is now docker-compose.</p>
+					</section>
+					<section>
+						<br>
+						<br>
+						<h2>August 29th 2014</h2>
+						<p>Fully containerized CI pipeline created.</p>
+					</section>
+					<section>
+						<br>
+						<br>
+						<h2>September 18th 2014</h2>
+						<p>Second Docker Dublin Meetup hosted and sponsored by Demonware.</p>
+					</section>
+					<section>
+						<br>
+						<br>
+						<h2>November 5th 2014</h2>
+						<p>Demos of Docker 1.3.0 and Fig 1.0 given.</p>
+					</section>
+					<section>
+						<br>
+						<br>
+						<h2>November 26th 2014</h2>
+						<p>Docker presentation at Citigroup (Dublin)</p>
+					</section>
+					<section>
+						<br>
+						<br>
+						<h2>December 11th 2014</h2>
+						<p>Preparing Docker Bootcamp material to be hosted at Gilt in Jan 2015.</p>
+					</section>
+				</section>
+				<section>
+				<img width="620" height="400" data-src="img/bootcamp.jpg" alt="bootcamp" style="background:none; border:none; box-shadow:none;" >
+				</section>
+				<section data-transition="convex">
+				
+				<p align="left">Starting in January 2015 we hosted a number of Docker Bootcamps within Demonware and externally.<br><br> The aim was to : </p>
+				<ul>
+				<li>Introduce Docker to engineers</li>
+				<li>Cover the basics such as building an image and running a container</li>
+				<li>Give something back to the Docker community</li>
+				</ul>
+				
+				</section>
+				<section data-transition="convex">
+				<ul>
+				<li>Gilt in Dublin. 28th/29th January 2015.  <a href="http://tech.gilt.com/2015/01/29/docker-classes-in-dublin-by-demonware">Details here.</a></li><br>
+				<li>Workday in Dublin. 11th September 2015</li><br>
+				<li>Interested in hosting a Bootcamp? <a href="http://twitter.com/tomwillfixit">Get in touch</a></li>
+				</ul>
+				
+				</section>
+
+				<section>
+				<img width="620" height="400" data-src="img/meetup.png" alt="meetup" style="background:none; border:none; box-shadow:none;" >
+				</section>
+
+				<section data-transition="convex">
+				<p align="left">Demonware has also been actively involved in organizing Docker Meetups. <br><br> Scroll down for a list of Meetups</p>
+				<section>
+						<a href="#" class="navigate-down">
+						<img width="175" height="175" data-src="img/arrow.png" alt="Down arrow" style="background:none; border:none; box-shadow:none;">	
+						</a>
+					</section>
+					<section>
+						<br>
+						<br>
+						<h2>July 9th 2014</h2>
+						<p>Inaugural Docker Dublin Meetup with Gilt</p>
+					</section>
+					<section>
+						<br>
+						<br>
+						<h2>September 18th 2014</h2>
+						<p>Demonware Ltd. and Docker: Past, Present and Future</p>
+					</section>
+					<section>
+						<br>
+						<br>
+						<h2>October 5th 2015</h2>
+						<p>With special guests Tom Barlow (Docker) and Casey Bisson (Joyent)</p>
+					</section>
+					<section>
+						<br>
+						<br>
+						<h2>November 3rd 2015</h2>
+						<p>With special guest Diogo Mónica, Security Lead @Docker</p>
+					</section>
+					<section>
+						<br>
+						<br>
+						<h2>February 24th 2016</h2>
+						<p>Building a Production ready PaaS at Yelp</p>
+					</section>
+					<section>
+						<br>
+						<br>
+						<h2>March 23rd 2016</h2>
+						<p>Docker Birthday #3 Celebration + Training</p>
+					</section>
+					<section>
+						<br>
+						<br>
+						<h2>May 10th 2016</h2>
+						<p>With special guest Jérôme Petazzoni, Tinkerer Extraordinaire @Docker</p>
+					</section>
+					<section>
+						<br>
+						<br>
+						<h2>July 21st 2016</h2>
+						<p>DockerCon 16 Recap Meetup</p>
+					</section>
+					<section>
+						<br>
+						<br>
+						<h2>Join us : </h2>
+						<p><a href="https://www.meetup.com/Docker-Dublin">https://www.meetup.com/Docker-Dublin</p></a>
+					</section>
+
+				</section>
+				<section>
+				<strong>June 2015</strong> 
+				<p align="left">
+				Pitfall #2 :
+				<br><br>
+				<p>&ldquo;The greater the power, the more dangerous the abuse. &rdquo; <strong>Edmund Burke</strong></p>
+				<br>
+				<br>
+				<ul>
+					<li>Use version numbers in image tags</li>
+					<li>Use image labels</li>
+					<li>Don't use Docker in Docker</li>
+					<li>If docker image > 5 gig, review what is really needed</li>
+					<li>Lesson learned : Put some guidelines in place</li>
+				</ul>
+				</section>
+				<section>
+				<h1>Docker Ecosystem</h1>
+
+				<p align="left">We are well versed in the basics of Docker by July 2015.  Time to start using more tools from the ecosystem.<br>
+				<ul>
+				<li>Docker Machine</li>
+				<li>Docker compose</li>
+				<li>Docker Swarm</li>
+				<li>Rancher</li>
+				</ul>
+				</p>
+				</section>
+
+				<section data-transition="convex">
+				<strong>September 3rd 2015</strong> 
+				<p align="left">Prototype running infrastructure services in containers.<br><br>We used docker-compose to deploy and manage the following : </p> 
+				<br>
+				<ul>
+				<li>Bamboo</li>
+				<li>Jenkins</li>
+				<li>PyPi</li>
+				<li>Docker Registry</li>
+				</ul>
+				
+				</section>
+				
+				<section>
+				<strong>November 2015</strong> 
+				<p align="left">
+				Pitfall #3 :
+				<br><br>
+				<p align="left">&ldquo;Have a mind that's open to everything, get attached to nothing. &rdquo; <strong>Gary Busey</strong></p>
+				<br>
+				<br>
+				<ul>
+					<li>Don't get attached to a particular OS flavour</li>
+					<li>Constantly review and refine base images</li>
+					<li>Treat the host and base OS like cattle</li>
+					<li>Lesson learned : Be prepared to pivot</li>
+					
+				</ul>
+				</section>
+				<section>
+				<h1>The end is nigh</h1>
+				<br>
+
+
+				</section>
+				<section>
+				<br>
+				<br>
+				<p align="left">Actually the end is now.<br><br>  We are continuing to use Docker heavily at Demonware and these slides will continue to be updated. <br><br> Hopefully this brief history will prove to be useful and perhaps some of the pitfalls we encountered can be avoided.</p>
+
+
+				</section>
+				<section>
+				<h1>We are hiring</h1>
+				<img width="650" height="250" data-src="img/dw2.png" alt="Demonware" style="background:none; border:none; box-shadow:none;">
+				</section>
+				
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
